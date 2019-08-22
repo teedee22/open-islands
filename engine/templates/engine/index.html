@@ -1,0 +1,15 @@
+<p>Hello {{player.id}}, your score is {{player.score}}</p>
+
+<h4>Buildings:</h4>
+<ul>
+    {% for building in buildings %}
+    <li>{{building}} - Upgrade Gold: {{building.cost_gold}}</li>
+    {% endfor %}
+</ul>
+
+<h4>Resources:</h4>
+<ul>
+    <li>Gold: {{player.gold}}</li>
+    <li>Lumber: {{player.lumber}}</li>
+    <li>Stone: {{player.stone}}</li>
+</ul>
