@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from engine.models import Building, Player
+from engine.models import Building, Player, Goldmine
 from django.http import HttpResponse
 
 from django.utils import timezone
@@ -12,4 +12,18 @@ def index(request):
     seconds_passed = (timezone.now() - player.last_action).total_seconds()
     player.last_action = timezone.now()
     player.save()
-    return render(request, 'engine/index.html', {"player": player, "buildings": buildings, "seconds_passed": seconds_passed})
+    return render(request, 'engine/index.html', {"player": player,
+                                                 "buildings": buildings,
+                                                 "seconds_passed": seconds_passed})
+
+def make(request):
+    dummy = Goldmine(name="dummy")
+    for mine in range(5):
+        building = Goldmine(name=f'Goldmine level {mine}')
+        building.level = mine
+        building.cost_gold = building.calc_cost_gold()
+        building.cost_lumber = building.calc_cost_lumber()
+        building.cost_stone = building.calc_cost_stone()
+        building.gold_per_hour = building.output()
+        building.score_addition = building.calc_score_addition()
+        building.save()
