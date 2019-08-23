@@ -40,15 +40,18 @@ class Goldmine(Building):
         return costs(self.level, 2)
 
 
-class Player(models.Model):
+class Player(models.Model):  # Maybe this should be an island ID
     id = models.IntegerField  # Maybe rehash as a foreign key of User object
     score = models.IntegerField(default=1)
     last_action = models.DateTimeField(auto_now=False)
 
     # Resources
-    gold = models.IntegerField(default=200)
-    lumber = models.IntegerField(default=200)
-    stone = models.IntegerField(default=200)
+    gold = models.FloatField(default=200)
+    gold_accrual = models.IntegerField(default=3)
+    lumber = models.FloatField(default=200)
+    lumber_accrual = models.IntegerField(default=4)
+    stone = models.FloatField(default=200)
+    stone_accrual = models.IntegerField(default=4)
 
     # Attributes
     buildings = models.ManyToManyField(Building, blank=True)

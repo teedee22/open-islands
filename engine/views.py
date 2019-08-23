@@ -10,6 +10,9 @@ def index(request):
     buildings = Building.objects.all()
     player = Player.objects.get(pk=1)
     seconds_passed = (timezone.now() - player.last_action).total_seconds()
+    player.gold += (seconds_passed / 3600) * player.gold_accrual
+    player.lumber += (seconds_passed / 3600) * player.lumber_accrual
+    player.stone += (seconds_passed / 3600) * player.stone_accrual
     player.last_action = timezone.now()
     player.save()
     return render(request, 'engine/index.html', {"player": player,
@@ -27,3 +30,5 @@ def make(request):
         building.gold_per_hour = building.output()
         building.score_addition = building.calc_score_addition()
         building.save()
+
+# def add_building(request):

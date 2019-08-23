@@ -9,9 +9,9 @@
 
 <h4>Resources:</h4>
 <ul>
-    <li>Gold: {{player.gold}}</li>
-    <li>Lumber: {{player.lumber}}</li>
-    <li>Stone: {{player.stone}}</li>
+    <li>Gold: {{ player.gold|floatformat }}</li>
+    <li>Lumber: {{ player.lumber|floatformat }}</li>
+    <li>Stone: {{ player.stone|floatformat }}</li>
 </ul>
 
 <h5>Seconds passed since last action: {{seconds_passed}}</h5>
